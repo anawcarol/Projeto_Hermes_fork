@@ -11,7 +11,7 @@
     - `models/`
         - `address.dart`: Modelo de dados para o endereço.
         - `stop.dart`: Modelo de dados para as paradas e serviço para buscar paradas.
-## Getting Started
+## Como utilizar
 
 #### Uso
 

@@ -36,7 +36,7 @@ dependencies:
   latlong2: ^0.8.1
   permission_handler: ^10.0.0
   flutter_map_marker_cluster: ^1.1.0
-
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
@@ -46,8 +46,8 @@ flutter:
   uses-material-design: true
 
   # Ative as linhas abaixo apenas se tiver os arquivos correspondentes no diretório assets ou fonts
-  # assets:
-  #   - assets/
+  assets:
+    - assets/images/logomaiorDFnoponto.png
 
   # fonts:
   #   - family: Roboto

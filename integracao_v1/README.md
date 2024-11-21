@@ -172,11 +172,6 @@ Caso não seja possível encontrar uma rota, a resposta será um erro com status
 ### Teste de rota completa no seu código:
 1. Inicie o servidor com o FastAPI (`uvicorn`).
 2. Acesse o endpoint conforme o exemplo acima, fornecendo os IDs das paradas de origem e destino que existem no seu banco de dados SQLite.
-
-Caso queira adicionar mais funcionalidades ou melhorar o tratamento de erros no endpoint, me avise que posso ajustar o código!
-
-Isso esclarece como usar o endpoint `/route`? Se precisar de mais detalhes, estou à disposição.
-
 ---
 
 Instalação fast api:

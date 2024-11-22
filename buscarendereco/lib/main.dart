@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:buscareferencia/screens/search_address_screen.dart';
+import 'package:buscareferencia/screens/busca_endereco_screen.dart';
 
 
 void main() {

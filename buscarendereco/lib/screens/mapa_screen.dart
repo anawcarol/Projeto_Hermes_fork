@@ -1,13 +1,14 @@
+import 'package:buscareferencia/services/busca_paradas_service.dart';
+import 'package:buscareferencia/services/busca_rotas_service.dart';
+import 'package:buscareferencia/services/espacial/buscar_linha_geojson_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:buscareferencia/services/geolocator_service.dart';
-import 'package:buscareferencia/models/marker.dart';
-import 'package:buscareferencia/utils/helpers.dart';
-import 'package:buscareferencia/models/stop.dart';
-import 'package:buscareferencia/models/address.dart';
-
-import '../services/api_service.dart';
+import 'package:buscareferencia/services/espacial/paradas_service.dart';
+import 'package:buscareferencia/utils/calcular.dart';
+import 'package:buscareferencia/models/paradas_model.dart';
+import 'package:buscareferencia/models/endereco_model.dart';
 
 class MapScreen extends StatefulWidget {
   final Address destination;
@@ -25,7 +26,6 @@ class _MapScreenState extends State<MapScreen> {
   Stop? _nearestStartStop;
   Stop? _nearestEndStop;
   List<dynamic> _routes = [];
-  final MarkerService _markerService = MarkerService();
 
   @override
   void initState() {
@@ -40,11 +40,11 @@ class _MapScreenState extends State<MapScreen> {
 
   void _setNearestStops() async {
     try {
-      final stops = await StopService.fetchStops();
+      final stops = await paradasService.buscarParadas();
       final destination = widget.destination;
 
-      final nearestStartStop = Helpers.findNearestStop(_userLocation, stops);
-      final nearestEndStop = Helpers.findNearestStop(LatLng(destination.lat, destination.lon), stops);
+      final nearestStartStop = Calcular.acharParadaProxima(_userLocation, stops);
+      final nearestEndStop = Calcular.acharParadaProxima(LatLng(destination.lat, destination.lon), stops);
 
       setState(() {
         _nearestStartStop = nearestStartStop;
@@ -61,7 +61,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _fetchRoutes(int paradaOrigem, int paradaDestino) async {
     try {
-      final routes = await ApiService.fetchRoutes(paradaOrigem, paradaDestino);
+      final routes = await BuscaRotasService.buscarRotas(paradaOrigem, paradaDestino);
       setState(() {
         _routes = routes;
       });
@@ -83,7 +83,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Future<void> _fetchLineGeoJson(String linha, int index) async {
     try {
-      final lineDetails = await ApiService.fetchLineGeoJson(linha);
+      final lineDetails = await BuscarLinhaGeojsonService.buscarLinhaGeoJson(linha);
       for (var feature in lineDetails) {
         if (feature['geometry']['type'] == 'LineString') {
           final coords = feature['geometry']['coordinates'];
@@ -109,7 +109,7 @@ class _MapScreenState extends State<MapScreen> {
         _markers.clear();
       });
 
-      final stopDetails = await ApiService.fetchStops(codDftransList);
+      final stopDetails = await BuscaParadasService.buscarParadas(codDftransList);
       final newMarkers = stopDetails.map((feature) {
         final coords = feature['geometry']['coordinates'];
         final stopLatLng = LatLng(coords[1], coords[0]);

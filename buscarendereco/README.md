@@ -36,7 +36,7 @@
 ---
 - `main.dart`: É o arquivo principal do projeto, que define a aplicação Flutter e suas rotas.
 - `models/address.dart`: Define a classe `Address` que representa um endereço com latitude, longitude e nome de exibição.
-- `address/marker.dart`: Define a classe `MarkerService` que cria marcadores para o mapa.
+- `address/marker.dart`: Define a classe `MarkerService` que cria marcadores para o mapa. (removido do projeto)
 - `address/stop.dart`: Define a classe `StopService` que faz uma requisição à API para obter os marcadores de paradas.
 - `screens/map_screen.dart`: É a tela do mapa que exibe os marcadores de paradas e a localização do usuário.
 - `screens/search_address_screen.dart`: É a tela de busca de endereços que permite ao usuário pesquisar um endereço e selecioná-lo.

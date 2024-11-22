@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/bus_line.dart';
+import '../models/linha_onibus_model.dart';
 
 class BusLinesScreen extends StatefulWidget {
   final String startStopCode;

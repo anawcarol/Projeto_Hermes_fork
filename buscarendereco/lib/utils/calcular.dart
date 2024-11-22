@@ -1,26 +1,26 @@
 import 'package:latlong2/latlong.dart';
 import 'dart:math';
-import 'package:buscareferencia/models/stop.dart';
+import 'package:buscareferencia/models/paradas_model.dart';
 
-class Helpers {
+class Calcular {
   // Encontra a parada mais próxima de uma localização específica (LatLng)
-  static Stop findNearestStop(LatLng location, List<Stop> stops) {
-    Stop? nearestStop;
+  static Stop acharParadaProxima(LatLng location, List<Stop> paradas) {
+    Stop? paradaProxima;
     double minDistance = double.infinity;
 
-    for (var stop in stops) {
-      final distance = distanceBetween(location, stop.point); // Calcula a distância
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearestStop = stop;
+    for (var parada in paradas) {
+      final distancia = distanciaEntre(location, parada.point); // Calcula a distância
+      if (distancia < minDistance) {
+        minDistance = distancia;
+        paradaProxima = parada;
       }
     }
 
-    return nearestStop!;
+    return paradaProxima!;
   }
 
   // Calcula a distância entre dois pontos LatLng usando a fórmula do haversine
-  static double distanceBetween(LatLng latLng1, LatLng latLng2) {
+  static double distanciaEntre(LatLng latLng1, LatLng latLng2) {
     final double radius = 6371; // Raio da Terra em km
     final double dLat = latLng2.latitudeInRad - latLng1.latitudeInRad;
     final double dLon = latLng2.longitudeInRad - latLng1.longitudeInRad;
@@ -30,9 +30,9 @@ class Helpers {
             sin(dLon / 2) *
             sin(dLon / 2);
     final double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-    final double distance = radius * c;
+    final double distancia = radius * c;
 
-    return distance;
+    return distancia;
   }
 }
 

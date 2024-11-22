@@ -1,7 +1,7 @@
+import 'package:buscareferencia/services/espacial/buscar_endereco_service.dart';
 import 'package:flutter/material.dart';
-import 'package:buscareferencia/services/api_service.dart';
-import 'package:buscareferencia/models/address.dart';
-import 'package:buscareferencia/screens/map_screen.dart';
+import 'package:buscareferencia/models/endereco_model.dart';
+import 'package:buscareferencia/screens/mapa_screen.dart';
 
 class SearchAddressScreen extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
     });
 
     try {
-      final results = await ApiService.searchAddress(query);
+      final results = await BuscarEnderecoService.buscarEndereco(query);
       setState(() {
         _addresses = results.map((data) => Address.fromJson(data)).toList();
       });
@@ -75,7 +75,7 @@ class _SearchAddressScreenState extends State<SearchAddressScreen> {
                 const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 4),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
               ),
               child: Row(
                 children: [

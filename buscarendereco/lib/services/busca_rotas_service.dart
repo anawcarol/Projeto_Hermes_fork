@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class BuscaRotasService {
     static Future<List<dynamic>> buscarRotas(int paradaOrigem, int paradaDestino) async {
     try {
-      final response = await http.get(Uri.parse('http://127.0.0.1:8000/rotas/?origem=$paradaOrigem&destino=$paradaDestino'));
+      final response = await http.get(Uri.parse('http://localhost:8000/rotas/?origem=$paradaOrigem&destino=$paradaDestino'));
       print('Requisição buscarRotas feita com status: ${response.statusCode}');
       if (response.statusCode == 200) {
         print('Resposta da API buscarRotas: ${response.body}');

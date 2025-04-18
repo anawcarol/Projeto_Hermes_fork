@@ -5,7 +5,7 @@ class BuscaParadasService {
     static Future<List<dynamic>> buscarParadas(List<int> codDftransList) async {
     try {
       final codDftransParams = codDftransList.map((e) => "codDftrans=$e").join('&');
-      final response = await http.get(Uri.parse('http://127.0.0.1:8000/paradas/geo/?$codDftransParams'));
+      final response = await http.get(Uri.parse('http://localhost:8000/paradas/geo/?$codDftransParams'));
       print('Requisição fetchbuscarParadasStops feita com status: ${response.statusCode}');
       if (response.statusCode == 200) {
         print('Resposta da API buscarParadas: ${response.body}');

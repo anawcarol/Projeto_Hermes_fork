@@ -4,7 +4,7 @@ from a_star import encontrar_caminho_com_integracao_astar
 from utils import salvar_grafo, carregar_grafo
 
 def main():
-    caminho_bd = 'paradas_linhas.db'
+    caminho_bd = 'paradas_linhas_2025.db'
     caminho_arquivo_grafo = 'grafo.pkl'
     
     grafo = carregar_grafo(caminho_arquivo_grafo)

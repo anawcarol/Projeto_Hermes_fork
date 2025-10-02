@@ -9,12 +9,12 @@ def carregar_dados_bd(caminho_bd):
     paradas = []
     linhas_de_onibus = defaultdict(list)
     
-    cursor.execute('SELECT parada_id, linhas FROM paradas_linhas')
+    cursor.execute('SELECT id_ponto_parada, linhas FROM tab_linha_parada')
     for row in cursor.fetchall():
-        parada_id = row[0]
+        id_ponto_parada = row[0]
         linhas = row[1].split(', ')
-        paradas.append(parada_id)
-        linhas_de_onibus[parada_id].extend(linhas)
+        paradas.append(id_ponto_parada)
+        linhas_de_onibus[id_ponto_parada].extend(linhas)
     
     conn.close()
     return paradas, linhas_de_onibus
